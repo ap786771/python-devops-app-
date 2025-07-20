@@ -1,11 +1,12 @@
-- name: Deploy Python DevOps App
-  hosts: web
-  tasks:
-    - name: Pull latest image
-      shell: docker pull python-devops-app
-
-    - name: Stop old container
-      shell: docker stop flask || true && docker rm flask || true
-
-    - name: Run new container
-      shell: docker run -d -p 80:5000 --name flask python-devops-app
+# 7. docker-compose.yml
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      - FLASK_APP=app
+      - FLASK_ENV=development
