@@ -1,0 +1,23 @@
+flask
+flask_sqlalchemy
+pytest
+
+# 6. Dockerfile
+FROM python:3.11-slim
+WORKDIR /app
+COPY . .
+RUN pip install -r requirements.txt
+CMD ["python", "-m", "flask", "run", "--host=0.0.0.0"]
+
+# 7. docker-compose.yml
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      - FLASK_APP=app
+      - FLASK_ENV=development
