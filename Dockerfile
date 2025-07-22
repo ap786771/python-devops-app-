@@ -7,4 +7,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD ["python", "app.py"]  # Adjust this line to your main Python file
+CMD ["python", "app.py"]
